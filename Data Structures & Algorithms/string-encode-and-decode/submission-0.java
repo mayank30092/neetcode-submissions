@@ -1,25 +1,25 @@
 class Solution {
-
     public String encode(List<String> strs) {
-        StringBuilder ans = new StringBuilder();
-        for (String str : strs) {
-            ans.append(str.length()).append("#").append(str);
+        StringBuilder sb = new StringBuilder();
+        for(String str : strs) {
+            sb.append(str.length())
+            .append("#")
+            .append(str);
         }
-        return ans.toString();
+    return sb.toString();
     }
 
     public List<String> decode(String str) {
-        List<String> ans = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         int i = 0;
-
         while (i < str.length()) {
-            int j = i;
-            while (str.charAt(j) != '#') j++;
-            int len = Integer.parseInt(str.substring(i, j));
-            j++;
-            ans.add(str.substring(j, j + len));
-            i = j + len;
+            int j = str.indexOf("#", i);
+            int length = Integer.parseInt(str.substring(i, j));
+            i = j + 1;
+            String word = str.substring(i, i + length);
+            result.add(word);
+            i = i + length;
         }
-        return ans;
+        return result;
     }
 }
